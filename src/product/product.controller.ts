@@ -28,8 +28,20 @@ export class ProductController {
     }
     @Get('/create')
     async create()  {  
-      const p = this.productService.save();
 
-      this.model.save(p)
+      for(var i = 0; i< 100 ; i++){
+        const p = this.productService.save();
+        this.model.create(p)
+      }
+      
+    }
+
+    @Get('/es')
+    async search(){
+      return await this.productService.findbyes();
+    }
+    @Get('/ct')
+    async ct(){
+      return await this.productService.createModel();
     }
 }

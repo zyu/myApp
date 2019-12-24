@@ -43,7 +43,8 @@ export class SpecValueSchema{
     @prop()
     PackageNum  : Number //'包装规格'  
 
-    
+    @prop()
+    picture:String // sku 图片
     
     @prop()
     stock  : Number// '库存'
@@ -76,14 +77,14 @@ export class SpecValueSchema{
     active  : Number// '是否启用(1：启用  0：不启用)'
 }
 export class SkuSchema{
-    @arrayProp({ itemsRef: SpecSchema })
-    Specs?: Ref<SpecSchema>[]
+    @arrayProp({ items: SpecSchema } )
+    Specs?:  SpecSchema[]
 
-    @arrayProp({ itemsRef: SpecValueSchema })
-    SpecValues?:Ref<SpecValueSchema>[]
+    @arrayProp( { items: SpecValueSchema })
+    SpecValues?: SpecValueSchema[]
 
-    @arrayProp({itemsRef:PackageSchema})
-    Packages:Ref<PackageSchema>[]
+    @arrayProp(  { items: PackageSchema })
+    Packages: PackageSchema []
 
 }
 
@@ -179,8 +180,8 @@ export class ProductSchema {
     @prop()
     wareHouseId : String // '仓库id'  
 
-    @prop({ref:SkuSchema})
-    Sku:Ref<SkuSchema>
+    @prop({ _id: false })
+    Sku:SkuSchema
 
 
     
